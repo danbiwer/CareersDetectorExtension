@@ -1,14 +1,13 @@
-
+console.log("begin2");
 
 const whitelist = [ "careers", "jobs" ];
 var links = document.links;
 
-links.forEach(function(link){
-	var text = link.textContent.toLowerCase();
+Array.prototype.forEach.call(links, function(link){
 	if(isValid(link)){
-
+		updateExtension(link.href);
 	}
-})
+});
 
 function isValid(link){
 	var text = link.textContent;
@@ -16,7 +15,9 @@ function isValid(link){
 }
 
 function updateExtension(url){
-	chrome.runtime.sendMessage({
-		career_page: url;
-	});
+	console.log("here");
+	var message = new Object();
+	message["career_page"] = url;
+	console.log(message);
+	chrome.runtime.sendMessage(message);
 }
