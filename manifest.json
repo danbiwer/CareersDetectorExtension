@@ -1,0 +1,27 @@
+{
+  "name": "QuickApply",
+  "author": "Daniel Biwer",
+  "description": "Scans websites for application pages",
+  "browser_action": {
+    "default_icon":"on.png"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128":"icon128.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches" : [ "https://*/*" ],
+      "exclude_matches" : ["https://*/careers*"],
+      "js" : [ "scan.js" ],
+      "run_at" : "document_idle"
+    }
+  ],
+  "version": "1.0",
+  "minimum_chrome_version": "9",
+  "manifest_version": 2
+}
