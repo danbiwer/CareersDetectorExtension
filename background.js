@@ -1,28 +1,30 @@
 
 
 
-var url = null;
+var career_page_url = null;
+var hostname = null;
 
-
-//TODO: fix url being cleared multiple times when page loads
 chrome.tabs.onUpdated.addListener(function(tabid, changeInfo, tab) {
   if (changeInfo.status == 'complete') {
-    console.log("clear");
-    url = null;
+    var url = new URL(tab.url);
+    if(url.hostname != hostname){
+      hostname = url.hostname;
+      career_page_url = null;
+    }
   }
 });
 
 chrome.browserAction.onClicked.addListener(function(tab){
-  console.log("click " + url);
-  if(url){
-    navigate(url);
+  console.log("click " + career_page_url);
+  if(career_page_url){
+    navigate(career_page_url);
   }
 
 });
 
 chrome.runtime.onMessage.addListener(function(request){
-    url = request.career_page;
-    console.log(url);
+    career_page_url = request.career_page;
+    console.log(career_page_url);
 });
 
 function navigate(url) {

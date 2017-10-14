@@ -8,11 +8,11 @@
   "content_scripts": [
     {
       "matches" : [ "https://*/*" ],
-      "exclude_matches" : ["https://*/careers*"],
       "js" : [ "scan.js" ],
       "run_at" : "document_idle"
     }
   ],
+  "permissions" : [ "tabs" ],
   "browser_action":{},
   "version": "1.0",
   "minimum_chrome_version": "9",
